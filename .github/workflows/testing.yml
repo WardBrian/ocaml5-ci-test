@@ -29,10 +29,10 @@ jobs:
           path: stanc
       
       - run: cd stanc && opam exec -- dune build
-      - run: pwd
+      - run: Get-ChildItem -Recurse
 
       - name: Upload Windows stanc
         uses: actions/upload-artifact@v2
         with:
           name: windows-stanc
-          path: _build_/default/src/stanc/stanc.exe
+          path: ./stanc/_build/default/src/stanc/stanc.exe
