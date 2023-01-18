@@ -1,4 +1,4 @@
-name: CI
+name: Build windows Stanc
 
 on: [push, pull_request, workflow_dispatch]
 
@@ -18,10 +18,8 @@ jobs:
             dra27: https://github.com/dra27/opam-repository.git#windows-5.0
             default: https://github.com/fdopen/opam-repository-mingw.git#opam2
 
-      - run: opam exec -- ocamlopt -config
       - run: opam pin -y core v0.15.1 --no-action
       - run: opam install -y dune core.v0.15.1 menhir.20210929 ppx_deriving.5.2.1 fmt.0.9.0 yojson.1.7.0
-      - run: opam list
       
       - name: Check out Stanc3
         uses: actions/checkout@v3
@@ -31,3 +29,9 @@ jobs:
           path: stanc
       
       - run: cd stanc && opam exec -- dune build
+      
+      - name: Upload Windows stanc
+        uses: actions/upload-artifact@v2
+        with:
+          name: windows-stanc
+          path: stanc/_build_/default/src/stanc/stanc.exe
