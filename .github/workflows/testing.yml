@@ -29,9 +29,10 @@ jobs:
           path: stanc
       
       - run: cd stanc && opam exec -- dune build
-      
+      - run: pwd
+
       - name: Upload Windows stanc
         uses: actions/upload-artifact@v2
         with:
           name: windows-stanc
-          path: stanc/_build_/default/src/stanc/stanc.exe
+          path: _build_/default/src/stanc/stanc.exe
