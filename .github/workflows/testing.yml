@@ -13,7 +13,7 @@ jobs:
       - name: Set-up OCaml
         uses: ocaml/setup-ocaml@v3
         with:
-          ocaml-compiler: ocaml.5.0.0,ocaml-option-mingw
+          ocaml-compiler: "4.14.1"
 
       - run: opam pin -y core v0.16.1 --no-action
       - run: opam install -y dune core.v0.16.1 menhir.20210929 ppx_deriving.5.2.1 fmt.0.9.0 yojson.1.7.0
